@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  justify-content: start;
+  box-sizing: border-box;
+}
+
+.frosted-glass-panel {
+  width: 100%;
+  box-sizing: border-box;
+  height: 80%;
+  color: #2A2225;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  max-width: 400px;
+  text-align: center;
+}
