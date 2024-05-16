@@ -7,7 +7,7 @@ interface PanelProps {
 
 const Panel: FC<PanelProps> = ({children}) => {
   return (
-    <div className="container">
+    <div className="g_panel_box">
       <div className="frosted-glass-panel">
         {children}
       </div>

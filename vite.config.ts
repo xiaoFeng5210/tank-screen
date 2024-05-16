@@ -13,5 +13,14 @@ export default defineConfig({
       "~/pages": path.resolve(__dirname, "src/pages"),
       "~/utils": path.resolve(__dirname, "src/utils"),
     }
-  }
+  },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://192.168.4.107:8092/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
+  },
 })
