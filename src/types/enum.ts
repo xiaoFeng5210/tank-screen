@@ -1,9 +1,15 @@
 export enum OrderProcess {
-  put_bowl= "put_bowl",
-  add_soup= "add_soup",
-  feeding = "feeding",
-  heating = "heating",
-  waiting_served = "waiting_served",
-  eating_out = "eating_out",
-  done = "done",
+  put_bowl = 0,
+  add_soup,
+  feeding,
+  heating ,
+  waiting_served,
+  eating_out,
+  done,
+}
+
+/**
+ * 电磁炉状态
+ */
+export enum InductionCookerStatus {
 }
