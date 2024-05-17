@@ -1,7 +1,7 @@
-import {Graph} from '@antv/x6'
-import {useRef, useEffect} from "react";
-import {currentFlowStyle, generateAttr, generateNodeProps} from "./x6-data";
-import {Node} from "@antv/x6/src/model";
+import { Graph } from '@antv/x6'
+import { useRef, useEffect } from "react";
+import { currentFlowStyle, generateAttr, generateNodeProps } from "./x6-data";
+import { Node } from "@antv/x6/src/model";
 import Theme from "~/assets/theme.ts";
 
 let graph: Graph;
