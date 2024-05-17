@@ -7,8 +7,13 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table"
+import useOrderStore from "~/store/order.ts";
+import {OrderProcessText} from "~/types/enum.ts";
+import {useTranslation} from "react-i18next";
 
 const Section4 = () => {
+  const {t} = useTranslation('orderStatus');
+  const orderList = useOrderStore(state => state.orderList)
   return (
     <Table>
       <TableCaption>A list of your recent invoices.</TableCaption>
@@ -20,11 +25,15 @@ const Section4 = () => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">01</TableCell>
-          <TableCell>93%</TableCell>
-          <TableCell className="text-right">加热中</TableCell>
-        </TableRow>
+        {
+          orderList.map((order, index) => (
+            <TableRow key={order.order_id}>
+              <TableCell className="font-medium">{order.order_id}</TableCell>
+              <TableCell>{order.time_left / order.total_time * 100}%</TableCell>
+              <TableCell className="text-right">{OrderProcessText(t)[order.status]}</TableCell>
+            </TableRow>
+          ))
+        }
       </TableBody>
     </Table>
   )

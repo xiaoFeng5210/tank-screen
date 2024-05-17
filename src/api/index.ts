@@ -54,7 +54,7 @@ export function fetchCookNoodlesStatus(): Promise<SystemStatus> {
   return axiosInstance.get(prepositionUrl + `/system_status`);
 }
 
-interface OrderItem {
+export interface OrderItem {
   time_expected: number;
   time_left: number;
   total_time: number;
