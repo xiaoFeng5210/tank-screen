@@ -30,6 +30,7 @@ const completedTransition = {
 const haspotAnimate = {
   opacity: [1, 0, 1],
 }
+
 const haspotTransition = {
   repeat: Infinity,
   duration: 2.5,

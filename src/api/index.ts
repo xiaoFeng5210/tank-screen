@@ -35,3 +35,7 @@ export function fetchControlRobot(cmd: string, params?: number[]) {
 export function fetchCookNoodlesStatus() {
   return axiosInstance.get(prepositionUrl + `/system_status`);
 }
+
+export function fetchOrderList() {
+
+}
