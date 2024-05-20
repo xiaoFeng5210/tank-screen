@@ -143,20 +143,10 @@ export const useX6 = () => {
       container: containerRef.current!,
       width: 620,
       height: 400,
-      background: {
-        // color: '#F2F7FA',
-      },
+      background: {},
     })
     addNodes()
     addEdges()
-    // setTimeout(() => {
-    //   if (orderList.length > 0) {
-    //     orderList.forEach((order, index) => {
-    //       const currentNode = nodes[order.status]
-    //       currentNode.attr("text/text",  currentNode.attr("text/text") as string + order.order_id + '号 ');
-    //     })
-    //   }
-    // }, 1000)
   }
 
   useEffect(() => {
