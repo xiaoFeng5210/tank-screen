@@ -1,5 +1,6 @@
 .section3 {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  grid-template-columns: 1fr;
   grid-gap: 5px;
-}
+} 

@@ -1,6 +1,5 @@
 import { Graph } from '@antv/x6'
 import { useRef, useEffect } from "react";
-import { currentFlowStyle, generateAttr, generateNodeProps } from "./x6-data";
 import { Node } from "@antv/x6/src/model";
 import Theme from "~/assets/theme.ts";
 import {OrderProcess, OrderProcessText} from "~/types/enum.ts";
@@ -8,11 +7,11 @@ import {useTranslation} from "react-i18next";
 import useOrderStore from "~/store/order.ts";
 import { register } from '@antv/x6-react-shape'
 import NodeComponent from "~/components/react-node";
+import {generatorNode} from "~/components/section2/section2Help.tsx";
+import {OrderItem} from "~/api";
 
 let graph: Graph;
-const x6Left = 20
-const x6Top = 40
-const x6TopDelta = 120
+
 
 register({
   shape: 'custom-update-react-node',
@@ -40,87 +39,10 @@ export const useX6 = () => {
 
   function addNodes() {
     initialSteps.forEach((step, index) => {
-      if (index < 3) {
-        const node = graph.addNode({
-          shape: 'custom-update-react-node',
-          id: step.id,
-          x: x6Left + index * 220,
-          y: x6Top,
-          label: step.label,
-          data: {
-            label: step.label,
-            ids: []
-          },
-          ...generateNodeProps(),
-          ...generateAttr()
-        })
-        nodes.push(node as any)
-      }
-      if (index === 3) {
-        const node = graph.addNode({
-          shape: 'custom-update-react-node',
-          id: step.id,
-          label: step.label,
-          x: x6Left + (index - 1) * 220,
-          y: x6Top + x6TopDelta,
-          data: {
-            label: step.label,
-            ids: []
-          },
-          ...generateNodeProps(),
-          ...generateAttr()
-        })
-        nodes.push(node as any)
-      }
-      if (index === 4) {
-        const node = graph.addNode({
-          shape: 'custom-update-react-node',
-          data: {
-            label: step.label,
-            ids: []
-          },
-          id: step.id,
-          // x取上一个节点的x坐标
-          x: (x6Left + (3 - 1) * 220) - 220,
-          y: x6Top + x6TopDelta,
-          label: step.label,
-          ...generateNodeProps(),
-          ...generateAttr()
-        })
-        nodes.push(node as any)
-      }
-      if (index === 5) {
-        const node = graph.addNode({
-          shape: 'custom-update-react-node',
-          data: {
-            label: step.label,
-            ids: []
-          },
-          id: step.id,
-          x: x6Left,
-          y: x6Top + x6TopDelta,
-          label: step.label,
-          ...generateNodeProps(),
-          ...generateAttr()
-        })
-        nodes.push(node as any)
-      }
-      if (index === 6) {
-        const node = graph.addNode({
-          shape: 'custom-update-react-node',
-          data: {
-            label: step.label,
-            ids: []
-          },
-          id: step.id,
-          x: x6Left,
-          y: x6Top + x6TopDelta * 2,
-          label: step.label,
-          ...generateNodeProps(),
-          ...generateAttr()
-        })
-        nodes.push(node as any)
-      }
+      const node = graph.addNode({
+        ...generatorNode(step, index),
+      })
+      nodes.push(node as unknown as Node<Node.Properties>)
     })
   }
 
@@ -136,6 +58,23 @@ export const useX6 = () => {
         }
       })
     }
+  }
+
+  function setNodeData(list: OrderItem[]) {
+    if (nodes.length === 0) return
+    nodeSetData(list)
+  }
+
+  function nodeSetData(list: OrderItem[]) {
+    nodes.forEach((node, index) => {
+      // 没个流程都到订单列表里去找，如果有就更新，没有就清除
+      const ids = list.filter(item => (!isNaN(item?.status) && item?.status === index)).map(item => item && item.order_id)
+      if (ids.length > 0) {
+        node.setData({ids})
+      } else {
+        node.setData({ids: []})
+      }
+    })
   }
 
   function init() {
@@ -157,6 +96,7 @@ export const useX6 = () => {
   }, []);
 
   return {
-    containerRef
+    containerRef,
+    setNodeData
   }
 }

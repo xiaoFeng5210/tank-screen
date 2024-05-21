@@ -2,8 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError } f
 
 // 创建 axios 实例
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: 'https://api.example.com', // 替换为你的基础 URL
-  timeout: 10000, // 请求超时
+  timeout: 5000, // 请求超时
   headers: {
     'Content-Type': 'application/json',
   },

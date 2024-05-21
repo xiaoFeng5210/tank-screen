@@ -1,25 +1,29 @@
 import { create } from 'zustand'
-import {OrderItem} from "~/api";
+import {fetchGetOrderList, OrderItem} from "~/api";
 
 interface State {
   orderList: OrderItem[]
 }
 
-const useOrderStore = create<State>(() => ({
+interface Action {
+  getOrderList: () => Promise<OrderItem[]>
+}
+
+const useOrderStore = create<State & Action>((set, get) => ({
   orderList: [
     {
       time_expected: 1000,
       time_left: 1000,
       total_time: 1000,
       order_id: 1,
-      status: 0
+      status: 6
     },
     {
       time_expected: 1000,
       time_left: 1000,
       total_time: 1000,
       order_id: 99,
-      status: 0
+      status: 5
     },
     {
       time_expected: 1000,
@@ -33,9 +37,16 @@ const useOrderStore = create<State>(() => ({
       time_left: 1000,
       total_time: 1000,
       order_id: 102,
-      status: 0
+      status: 3
     },
   ],
+
+  async getOrderList() {
+    // const res = await fetchGetOrderList(10).catch(() => {return});
+    // console.log(res)
+    // TODO: set orderList
+    return get().orderList
+  },
 }))
 
 export default useOrderStore

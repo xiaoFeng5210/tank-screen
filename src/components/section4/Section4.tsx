@@ -10,6 +10,7 @@ import {
 import useOrderStore from "~/store/order.ts";
 import {OrderProcessText} from "~/types/enum.ts";
 import {useTranslation} from "react-i18next";
+import { Progress } from "~/components/ui/progress"
 
 const Section4 = () => {
   const {t} = useTranslation('orderStatus');
@@ -29,7 +30,9 @@ const Section4 = () => {
           orderList.map((order, index) => (
             <TableRow key={order.order_id}>
               <TableCell className="font-medium">{order.order_id}</TableCell>
-              <TableCell>{order.time_left / order.total_time * 100}%</TableCell>
+              <TableCell>
+                <Progress value={(order.time_expected - order.time_left) / order.total_time * 100} />
+                </TableCell>
               <TableCell className="text-right">{OrderProcessText(t)[order.status]}</TableCell>
             </TableRow>
           ))

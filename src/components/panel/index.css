@@ -1,6 +1,7 @@
 .g_panel_box {
   display: flex;
-  justify-content: start;
+  width: 100%;
+  justify-content: center;
   box-sizing: border-box;
 }
 
