@@ -10,19 +10,19 @@ import {
 import useOrderStore from "~/store/order.ts";
 import {OrderProcessText} from "~/types/enum.ts";
 import {useTranslation} from "react-i18next";
-import { Progress } from "~/components/ui/progress"
+import {Progress} from "~/components/ui/progress"
 
 const Section4 = () => {
-  const {t} = useTranslation('orderStatus');
+  const {t} = useTranslation('orderList');
+  const {t: t_status} = useTranslation('orderStatus');
   const orderList = useOrderStore(state => state.orderList)
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+    <Table className="w-[600px]">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[200px]">订单号</TableHead>
-          <TableHead>进度</TableHead>
-          <TableHead className="text-right">状态</TableHead>
+          <TableHead className="w-[200px]">{t("order_id")}</TableHead>
+          <TableHead>{t("progress")}</TableHead>
+          <TableHead className="text-right">{t("status")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -31,9 +31,9 @@ const Section4 = () => {
             <TableRow key={order.order_id}>
               <TableCell className="font-medium">{order.order_id}</TableCell>
               <TableCell>
-                <Progress value={(order.time_expected - order.time_left) / order.total_time * 100} />
-                </TableCell>
-              <TableCell className="text-right">{OrderProcessText(t)[order.status]}</TableCell>
+                <Progress value={(order.time_expected - order.time_left) / order.total_time * 100}/>
+              </TableCell>
+              <TableCell className="text-right">{OrderProcessText(t_status)[order.status]}</TableCell>
             </TableRow>
           ))
         }

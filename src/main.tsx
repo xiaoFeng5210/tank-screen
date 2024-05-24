@@ -1,9 +1,9 @@
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import i18n from "i18next";
-import { useTranslation, initReactI18next } from "react-i18next";
+import {useTranslation, initReactI18next} from "react-i18next";
 import './index.css';
-import { zhCN } from "./lang/zh-CN";
+import {zhCN} from "./lang/zh-CN";
 import en from "./lang/en";
 import App from "./App";
 
@@ -15,10 +15,10 @@ i18n
     // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
     resources: {
       en,
-      cn: zhCN
+      "zh-CN": zhCN
     },
-    lng: "cn", // if you're using a language detector, do not define the lng option
-    fallbackLng: "cn",
+    lng: "zh-CN", // if you're using a language detector, do not define the lng option
+    fallbackLng: "zh-CN",
 
     interpolation: {
       escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape
@@ -28,5 +28,5 @@ i18n
 // append app to dom
 const root = createRoot(document.getElementById('root')!);
 root.render(
-  <App />
+  <App/>
 );

@@ -1,5 +1,6 @@
-import { OrderProcess } from '~/types/enum';
+import {OrderProcess} from '~/types/enum';
 import axiosInstance from '../utils/axios-config';
+import {SystemStatus} from '~/types/common';
 
 const url = new URL(window.location.href);
 // @ts-ignore http://192.168.4.43:8092/action http://192.168.4.56:8092/action
@@ -17,25 +18,8 @@ export const prepositionUrl = import.meta.env.DEV ? "api/action" : "/action";
  * @param params
  */
 export function fetchControlRobot(cmd: string, params?: number[]) {
-  const data = params ? { cmd, params } : { cmd };
+  const data = params ? {cmd, params} : {cmd};
   return axiosInstance.post(prepositionUrl + "/control", data);
-}
-
-interface InductionCookerStatus {
-  heat_status: number;  // 是否加热
-  temperature1: number;  // 温度1
-  temperature2: number;  // 温度2
-  error: string[]
-
-}
-
-interface SystemStatus {
-  robot_status: number;
-  scheduler_status: number;
-  bowl_out: number;  // 出餐位
-
-  // 电磁炉信息
-  induction_cooker_status: InductionCookerStatus;
 }
 
 /**
@@ -69,7 +53,7 @@ type OrderList = OrderItem[];
  * @param count 数量
  * @param date 日期 0为当天 30 为 30天
  */
-export const fetchGetOrderList = (count: number, date = 0): Promise<{ order_list: OrderList }> => {
+export const fetchGetOrderList = (count: number, date = 0): Promise<OrderList> => {
   return axiosInstance.get(prepositionUrl + `/order_list?count=${count}&date=${date}`);
 }
 
@@ -79,6 +63,14 @@ export const fetchGetOrderList = (count: number, date = 0): Promise<{ order_list
  */
 export function fetchGetFoodSetting() {
   return axiosInstance.get(prepositionUrl + `/dish_config`);
+}
+
+
+/**
+ * 信息国际化配置
+ */
+export function fetchGetMessages() {
+  return axiosInstance.get(prepositionUrl + `/translation_config`);
 }
 
 

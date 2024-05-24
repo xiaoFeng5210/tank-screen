@@ -8,16 +8,15 @@
 header {
   font-family: Helvetica John Doe Sans Serif;
   padding: 5px;
-  
+  box-sizing: border-box;
 
-/*  我想写一个有渐变背景色的字体*/
-/*  background: linear-gradient(90deg, #4F81BD 0%, blanchedalmond 50%, #fffb00 100%);*/
+
+  /*  我想写一个有渐变背景色的字体*/
+  /*  background: linear-gradient(90deg, #4F81BD 0%, blanchedalmond 50%, #fffb00 100%);*/
   background-color: #252222;
   /*-webkit-background-clip: text;*/
   /*-webkit-text-fill-color: transparent;*/
   font-size: 2em;
-  display: flex;
-  justify-content: center;
 }
 
 img {

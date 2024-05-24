@@ -1,7 +1,9 @@
 export const zhCN = {
   home: {
     company: 'Tang system',
-    title: '首页'
+    title: '首页',
+    // 电磁炉
+    stove: '电磁炉',
   },
   robotStatus: {
     0: "机器人硬件故障",
@@ -13,6 +15,11 @@ export const zhCN = {
     6: "暂停",
     7: "运行中",
     11: "机器人示教模式中",
+    cabinet: '料柜',
+    robot_status: '机器人状态',
+    has: "有",
+    none: "无"
+
   },
   stove: {
     idle: "空闲",
@@ -29,5 +36,23 @@ export const zhCN = {
     waiting_served: '等待出餐',
     eating_out: '出餐中',
     done: '已完成',
+  },
+  orderList: {
+    order_id: '订单号',
+    progress: '进度',
+    status: '状态',
+    created_at: '创建时间',
+    updated_at: '更新时间',
+    total_fee: '总金额',
+    action: '操作',
+    detail: '详情',
+    cancel: '取消',
+    serve: '出餐'
+  },
+  orderItem: {
+    order_id: '号订单'
+  },
+  err: {
+    title: "系统设置",
   }
 }

@@ -6,7 +6,7 @@ interface State {
 }
 
 interface Action {
-  getOrderList: () => Promise<OrderItem[]>
+  getOrderList: () => Promise<OrderItem[] | undefined>
 }
 
 const useOrderStore = create<State & Action>((set, get) => ({
@@ -42,10 +42,12 @@ const useOrderStore = create<State & Action>((set, get) => ({
   ],
 
   async getOrderList() {
-    // const res = await fetchGetOrderList(10).catch(() => {return});
-    // console.log(res)
-    // TODO: set orderList
-    return get().orderList
+    const res = await fetchGetOrderList(10).catch(() => {return});
+    if (res) {
+      set({orderList: res || []})
+      return get().orderList
+    }
+    return
   },
 }))
 

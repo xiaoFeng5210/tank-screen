@@ -14,6 +14,7 @@ const Section2 = () => {
 
   return (
     <div className="w-full h-full" ref={containerRef}>
+
     </div>
   )
 }
