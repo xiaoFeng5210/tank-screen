@@ -6,6 +6,7 @@ import './index.css';
 import {zhCN} from "./lang/zh-CN";
 import en from "./lang/en";
 import App from "./App";
+import {koKR} from "~/lang/ko-KR.ts";
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -14,11 +15,12 @@ i18n
     // (tip move them in a JSON file and import them,
     // or even better, manage them via a UI: https://react.i18next.com/guides/multiple-translation-files#manage-your-translations-with-a-management-gui)
     resources: {
+      "ko-KR": koKR,
       en,
       "zh-CN": zhCN
     },
-    lng: "zh-CN", // if you're using a language detector, do not define the lng option
-    fallbackLng: "zh-CN",
+    lng: "ko-KR", // if you're using a language detector, do not define the lng option
+    fallbackLng: "ko-KR",
 
     interpolation: {
       escapeValue: false // react already safes from xss => https://www.i18next.com/translation-function/interpolation#unescape

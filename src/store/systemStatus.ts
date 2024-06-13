@@ -13,6 +13,7 @@ interface Action {
 const useSystemStore = create<State & Action>((set) => ({
   status: {
     induction_cooker_status: [],
+
   },
 
   async getSystemStatus() {

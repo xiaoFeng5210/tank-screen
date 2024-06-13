@@ -27,11 +27,12 @@ const Section4 = () => {
       </TableHeader>
       <TableBody>
         {
-          orderList.map((order, index) => (
+          orderList.map((order) => (
             <TableRow key={order.order_id}>
               <TableCell className="font-medium">{order.order_id}</TableCell>
               <TableCell>
-                <Progress value={(order.time_expected - order.time_left) / order.total_time * 100}/>
+                {/*Math.floor((count - left) / count * 100)*/}
+                <Progress value={Math.floor(order.time_expected - order.time_left) / order.time_expected * 100}/>
               </TableCell>
               <TableCell className="text-right">{OrderProcessText(t_status)[order.status]}</TableCell>
             </TableRow>

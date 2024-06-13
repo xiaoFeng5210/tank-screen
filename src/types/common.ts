@@ -8,12 +8,14 @@ export interface StovenContent {
 
 export interface InductionCookerStatusResItem {
   heat_status: "open" | "close"
+  bowl_exit: number
   temperature1: number
   temperature2: number
   error: string[]
 }
 
 export interface SystemStatus {
+  bowl: number[]
   cabinet: number[]  // 面柜 料柜
   robot_status: number
   scheduler_status: number

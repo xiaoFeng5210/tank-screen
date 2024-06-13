@@ -31,9 +31,11 @@ const Card: React.FC<CardProps> = ({stove, t}) => {
       <h4
         className="font-bold text-xl mb-2">{t("status")}: {stove?.heat_status === 'open' ? t("heating") : t("idle")}</h4>
       <h4 className="text-gray-700 text-base mb-4">{t("temperature")}: {stove?.temperature1} ℃</h4>
-      {/*{*/}
-      {/*  stove?.error && <h4 className="text-red-400 text-base">{t("err")}: {stove?.error}</h4>*/}
-      {/*}*/}
+      {
+        stove.heat_status === "open" && <h4>{(stove.bowl_exit === 1) ? t("hasboil") : t("noboil")}</h4>
+      }
+
+
     </div>
   );
 };

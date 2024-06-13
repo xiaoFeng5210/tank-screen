@@ -144,8 +144,12 @@ export const useSystemMessages = () => {
 
   const renderMessage = (type: "warning" | "error", code: string, i18n: string) => {
     const messages = type === "warning" ? warnings : errors;
-    // @ts-ignore
-    return messages?.[code][i18n];
+    if (messages) {
+      // @ts-ignore
+      return messages?.[code]?.[i18n];
+    } else {
+      return ""
+    }
   }
 
   return {

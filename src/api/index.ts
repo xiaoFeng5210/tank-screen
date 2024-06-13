@@ -67,6 +67,20 @@ export function fetchGetFoodSetting() {
 
 
 /**
+ * 菜品配置
+ * {cabinet:{0:0, 1:0, 2:1}, food:{0:{name:'面条', cook_time:120, soft_time:5},
+ * cabinet：第0层菜品为0号菜，第1层为0号菜，第2层为1号菜
+ *  food：菜品配置，name-名称、cook_time-煮时长、soft_time：软口感增加时长
+ * cook_time 烹煮时长
+ * soft_time 较软口感需要增加的时长
+ * soup_time 加汤时长
+ */
+export function fetchSaveDishConfig(data: any) {
+  return axiosInstance.post(prepositionUrl + '/dish_config', data);
+}
+
+
+/**
  * 信息国际化配置
  */
 export function fetchGetMessages() {

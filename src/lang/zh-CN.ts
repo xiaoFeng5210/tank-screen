@@ -4,6 +4,25 @@ export const zhCN = {
     title: '首页',
     // 电磁炉
     stove: '电磁炉',
+    close: '关闭',
+
+    startRobot: "启动机器人中...",
+    buttonStartRobot: "启动机器人",
+    buttonStopRobot: "停止机器人",
+    buttonStartScheduler: "启动调度系统",
+    buttonStopScheduler: "停止调度系统",
+    stopRobot: "停止机器人中...",
+    startScheduler: "启动调度系统中...",
+    stopScheduler: "停止调度系统中...",
+    error: "操作失败",
+    addSoup: "汤品",
+    saveSuccess: "保存成功",
+  },
+  section3: {
+    // 放碗位
+    put_bowl: '放碗位',
+    // 出餐位
+    bowl_out: '出餐位',
   },
   robotStatus: {
     0: "机器人硬件故障",
@@ -26,7 +45,9 @@ export const zhCN = {
     heating: '加热中',
     temperature: '温度',
     err: '异常',
-    status: "状态"
+    status: "状态",
+    hasboil: "有碗",
+    noboil: "无碗",
   },
   orderStatus: {
     put_bowl: '放碗',
@@ -54,5 +75,5 @@ export const zhCN = {
   },
   err: {
     title: "系统设置",
-  }
+  },
 }

@@ -3,7 +3,7 @@ const x6Top = 40
 const x6TopDelta = 120
 
 
-const nodeTranslateMap = new Map<number, {x: number, y: number}>()
+const nodeTranslateMap = new Map<number, { x: number, y: number }>()
 nodeTranslateMap.set(0, {
   x: x6Left,
   y: x6Top
@@ -39,9 +39,9 @@ nodeTranslateMap.set(6, {
   y: x6Top + x6TopDelta * 2,
 })
 
-export function generatorNode(step: {label: string, id: string}, index: number) {
+export function generatorNode(step: { label: string, id: string }, index: number) {
   return {
-    shape: 'custom-update-react-node',
+    shape: `custom-update-react-node`,
     width: 150,
     height: 100,
     id: step.id,

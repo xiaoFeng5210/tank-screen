@@ -1,17 +1,17 @@
-import { Graph } from '@antv/x6'
-import { useRef, useEffect } from "react";
-import { Node } from "@antv/x6/src/model";
+import {Graph} from '@antv/x6'
+import {useRef, useEffect} from "react";
+import {Node} from "@antv/x6/src/model";
 import Theme from "~/assets/theme.ts";
 import {OrderProcess, OrderProcessText} from "~/types/enum.ts";
 import {useTranslation} from "react-i18next";
 import useOrderStore from "~/store/order.ts";
-import { register } from '@antv/x6-react-shape'
+import {register} from '@antv/x6-react-shape'
 import NodeComponent from "~/components/react-node";
 import {generatorNode} from "~/components/section2/section2Help.tsx";
 import {OrderItem} from "~/api";
+import useLangStore from "~/store/lang.ts";
 
 let graph: Graph;
-
 
 register({
   shape: 'custom-update-react-node',
@@ -21,21 +21,29 @@ register({
   component: NodeComponent,
 })
 
+let nodes: Node<Node.Properties>[] = []
+
+
 export const useX6 = () => {
+  const lang = useLangStore(state => state.lang)
+
+  useEffect(() => {
+    init()
+  }, [lang]);
+
   const orderList = useOrderStore(state => state.orderList)
-  const {t} = useTranslation('orderStatus')
+  const {t, i18n} = useTranslation('orderStatus')
   const render = OrderProcessText(t)
   const containerRef = useRef<HTMLDivElement>(null)
   const initialSteps = [
-    { id: 'step1', label: render[OrderProcess.put_bowl] },
-    { id: 'step2', label: render[OrderProcess.add_soup] },
-    { id: 'step3', label: render[OrderProcess.feeding] },
-    { id: 'step4', label: render[OrderProcess.heating] },
-    { id: 'step5', label: render[OrderProcess.waiting_served] },
-    { id: 'step6', label: render[OrderProcess.eating_out] },
-    { id: 'step7', label: render[OrderProcess.done]},
+    {id: 'step1', label: render[OrderProcess.put_bowl]},
+    {id: 'step2', label: render[OrderProcess.add_soup]},
+    {id: 'step3', label: render[OrderProcess.feeding]},
+    {id: 'step4', label: render[OrderProcess.heating]},
+    {id: 'step5', label: render[OrderProcess.waiting_served]},
+    {id: 'step6', label: render[OrderProcess.eating_out]},
+    {id: 'step7', label: render[OrderProcess.done]},
   ]
-  let nodes: Node<Node.Properties>[] = []
 
   function addNodes() {
     initialSteps.forEach((step, index) => {
@@ -72,12 +80,13 @@ export const useX6 = () => {
       if (ids.length > 0) {
         node.setData({ids})
       } else {
-        node.setData({ids: []})
+        node.setData({ids: [-1]})
       }
     })
   }
 
   function init() {
+    nodes = []
     graph = new Graph({
       container: containerRef.current!,
       width: 620,
@@ -90,9 +99,6 @@ export const useX6 = () => {
 
   useEffect(() => {
     init()
-    return () => {
-      nodes = []
-    }
   }, []);
 
   return {
